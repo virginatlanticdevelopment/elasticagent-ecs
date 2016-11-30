@@ -16,10 +16,9 @@
 
 package com.example.elasticagent;
 
-import com.example.elasticagent.executors.GetPluginConfigurationExecutor;
-import com.example.elasticagent.executors.GetViewRequestExecutor;
-import com.example.elasticagent.executors.ServerPingRequestExecutor;
+import com.example.elasticagent.executors.*;
 import com.example.elasticagent.requests.CreateAgentRequest;
+import com.example.elasticagent.requests.ProfileValidateRequest;
 import com.example.elasticagent.requests.ShouldAssignWorkRequest;
 import com.example.elasticagent.requests.ValidatePluginSettings;
 import com.thoughtworks.go.plugin.api.GoApplicationAccessor;
@@ -62,6 +61,14 @@ public class ExamplePlugin implements GoPlugin {
                     return new ServerPingRequestExecutor(agentInstances, pluginRequest).execute();
                 case PLUGIN_SETTINGS_GET_VIEW:
                     return new GetViewRequestExecutor().execute();
+                case REQUEST_GET_PROFILE_METADATA:
+                    return new GetProfileMetadataExecutor().execute();
+                case REQUEST_GET_PROFILE_VIEW:
+                    return new GetProfileViewExecutor().execute();
+                case REQUEST_VALIDATE_PROFILE:
+                    return ProfileValidateRequest.fromJSON(request.requestBody()).executor().execute();
+                case PLUGIN_SETTINGS_GET_ICON:
+                    return new GetPluginSettingsIconExecutor().execute();
                 case PLUGIN_SETTINGS_GET_CONFIGURATION:
                     return new GetPluginConfigurationExecutor().execute();
                 case PLUGIN_SETTINGS_VALIDATE_CONFIGURATION:
