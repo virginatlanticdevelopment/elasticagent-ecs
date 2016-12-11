@@ -30,7 +30,7 @@ public class GetPluginSettingsIconExecutor implements RequestExecutor {
     @Override
     public GoPluginApiResponse execute() throws Exception {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("content-type", "image/svg+xml");
+        jsonObject.addProperty("content_type", "image/svg+xml");
         jsonObject.addProperty("data", BaseEncoding.base64().encode(Util.readResourceBytes("/plugin-icon.svg")));
         DefaultGoPluginApiResponse defaultGoPluginApiResponse = new DefaultGoPluginApiResponse(200, GSON.toJson(jsonObject));
         return defaultGoPluginApiResponse;
