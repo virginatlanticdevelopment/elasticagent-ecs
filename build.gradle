@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 ThoughtWorks, Inc.
+ * Copyright 2017 ThoughtWorks, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,8 +32,8 @@ project.ext.pluginDesc = [
 ]
 
 // Force 1.7 compatibility to ensure that it works with older JVMs
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -107,35 +107,4 @@ jar {
   from(sourceSets.main.java) {
     into "/"
   }
-}
-
-
-task diff {
-  doFirst {
-    Set<File> files = project.fileTree("src").exclude(
-      '**/ExampleAgentInstances.java',
-      '**/ExampleInstance.java'
-    ).files
-
-    Set<File> dockerFiles = project.fileTree("../docker-elastic-agents/src").exclude(
-      '**/ExampleAgentInstances.java',
-      '**/ExampleInstance.java'
-    ).files
-
-    files.each { File file ->
-      File dockerFile = dockerFiles.find { eachFile -> eachFile.name == file.name }
-      if (dockerFile == null) {
-        return;
-      }
-      println "Diffing ${file} with ${dockerFile}"
-      exec {
-        commandLine = ['colordiff', file, dockerFile, "--ignore-matching-lines=import", "--ignore-matching-lines=package"]
-        setIgnoreExitValue(true)
-        standardOutput = System.out
-        errorOutput = System.err
-      }
-    }
-
-  }
-
 }

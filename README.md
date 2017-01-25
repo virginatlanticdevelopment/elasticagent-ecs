@@ -3,6 +3,9 @@
 This is merely a skeleton plugin that plugin developers can fork to get quickly 
 started with writing elastic agent plugins for GoCD.
 
+All the documentation is hosted at https://plugin-api.gocd.io/current/elastic-agents/.
+
+
 ## Getting started
 
 * Edit the file `build.gradle`
@@ -19,7 +22,7 @@ To build the jar, run `./gradlew clean test assemble`
 ## License
 
 ```plain
-Copyright 2016 ThoughtWorks, Inc.
+Copyright 2017 ThoughtWorks, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
