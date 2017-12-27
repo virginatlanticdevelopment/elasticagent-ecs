@@ -14,4 +14,11 @@
  * limitations under the License.
  */
 
-rootProject.name = 'elasticagent-ecs'
+package com.virginholidays.elasticagent;
+
+import com.thoughtworks.go.plugin.api.response.GoPluginApiResponse;
+
+public interface RequestExecutor {
+
+    GoPluginApiResponse execute() throws Exception;
+}
