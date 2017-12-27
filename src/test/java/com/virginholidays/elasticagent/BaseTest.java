@@ -14,4 +14,13 @@
  * limitations under the License.
  */
 
-rootProject.name = 'elasticagent-ecs'
+package com.virginholidays.elasticagent;
+
+import java.io.IOException;
+
+public abstract class BaseTest {
+
+    protected PluginSettings createSettings() throws IOException {
+        return new PluginSettings();
+    }
+}
